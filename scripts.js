@@ -13,15 +13,25 @@ function multiplication(arg1, arg2){
 
 function operate(operator, arg1, arg2){
     switch(operator) {
-        case "+": 
+        case `+`: 
             return addition(arg1, arg2);
-        case "-":
+        case `-`:
             return subtraction(arg1, arg2);
-        case "/":
+        case `/`:
             return division(arg1,arg2);
-        case "*": 
+        case `*`: 
             return multiplication(arg1, arg2);
         default:
-            return "Operator not found.";
+            return `Operator not found.`;
     }
 }
+
+const digits = document.querySelectorAll(`.number, .operator`);
+let display = document.getElementById(`display`);
+display.textContent = ``;
+
+digits.forEach(digit => {
+    digit.addEventListener(`click`, function digitClicked(event){
+        display.textContent += event.target.textContent;
+    })
+})
