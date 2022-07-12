@@ -5,6 +5,9 @@ function subtraction(arg1, arg2){
     return parseFloat(arg1) - parseFloat(arg2);
 }
 function division(arg1, arg2){
+    if(arg2 == 0){
+        return "Division by 0, really?";
+    }
     return parseFloat(arg1) / parseFloat(arg2);
 }
 function multiplication(arg1, arg2){
@@ -31,10 +34,11 @@ const result = document.querySelector(`#result`);
 const numbers = document.querySelectorAll(`.number`);
 const operators = document.querySelectorAll(`.operator`);
 const equal = document.querySelector(`.enter`);
+const AC = document.querySelector(`#eraseAll`);
+const C = document.querySelector(`#delete`);
 
 let first_term = second_term = '';
 let opp = '';
-
 
 numbers.forEach(number => {
     number.addEventListener("click", function (event) {
@@ -45,6 +49,7 @@ operators.forEach(operator => {
     operator.addEventListener("click", function (event){
         if (first_term === ''){
         first_term = display.textContent;
+        result.textContent = first_term;
         display.textContent = '';
         opp = event.target.textContent;
         }
@@ -57,4 +62,15 @@ operators.forEach(operator => {
         }
     });
 });
+equal.addEventListener("click", function () {
+    second_term = display.textContent;
+    display.textContent = '';
+    result.textContent = (operate(opp, first_term, second_term));
+    first_term = result.textContent;
+});
 
+AC.addEventListener("click", () => document.location.reload())
+
+C.addEventListener("click", function () {
+    display.textContent = display.textContent.slice(0, display.textContent.length - 1);
+})
