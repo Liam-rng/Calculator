@@ -69,8 +69,8 @@ equal.addEventListener("click", function () {
     first_term = result.textContent;
 });
 
-AC.addEventListener("click", () => document.location.reload())
+AC.addEventListener("click", () => document.location.reload());
 
 C.addEventListener("click", function () {
     display.textContent = display.textContent.slice(0, display.textContent.length - 1);
-})
+});
